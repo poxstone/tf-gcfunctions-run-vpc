@@ -3,29 +3,29 @@
 ## scripts
 
 - Deploy
-´´´bash
+```bash
 gcloud auth print-access-token > token.txt;
 terraform apply --auto-approve;
-´´´
+```
 - enable services
-´´´bash
+```bash
 gcloud services enable containeranalysis.googleapis.com;
 # shared/host and service net project
 gcloud services enable vpcaccess.googleapis.com;
-´´´
+```
 
 - Test
-´´´bash
+```bash
 HOST="https://gcf-test-network-01-${HOST_PROJECT_NUM}.us-central1.run.app";
 HOST="https://us-central1-${PROJECT_ID}.cloudfunctions.net/gcf-test-network-01";
 HOST="https://gcf-test-network-01-ezada3dyfq-uc.a.run.app";
 
 curl -X GET "${HOST}?url=https://example.com&method=GET"  \
 -H "Authorization: Bearer $(gcloud auth print-identity-token)";
-´´´
+```
 
 - vpc connection permissions
-´´´bash
+```bash
 HOST_PROJECT_ID="p4-net0-01";
 SERVICE_PROJECT_NUMBER="28443687020";
 gcloud projects add-iam-policy-binding ${HOST_PROJECT_ID} \
@@ -36,7 +36,7 @@ gcloud projects add-iam-policy-binding ${HOST_PROJECT_ID} \
   --member="serviceAccount:service-${SERVICE_PROJECT_NUMBER}@gcp-sa-vpcaccess.iam.gserviceaccount.com" \
   --role="roles/compute.networkUser"
 
-´´´
+```
 
 - rangos vpc host shared
 -- Rango de IP de la infraestructura sin servidores: 35.199.224.0/19
